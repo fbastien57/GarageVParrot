@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Acceuil
+{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(pictures/main.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .photo_meca{
+        background-image: url(pictures/service_meca.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+    }
+
+    .photo_caro{
+        background-image: url(pictures/service_caro.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+    }
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Garage V.Parrot</p>
+        </div>
+    </div>
+    {% include "_partials/_flash.html.twig" %}
+    <div class="row bg-dark m-3" style="height: 70px;">
+        <div class="col d-flex align-items-center justify-content-center ">
+          <h2 class="text-light">Nos services</h2>
+        </div>
+    </div> 
+    <div class="row bg-dark ">
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center mt-2">
+            <div class="card border border-danger rounded bg-dark" style="width: 45em;">
+                <div class="photo_meca card-img-top rounded d-flex align-items-center justify-content-center" alt="Image de mécanique" >
+                    <h3 class="card-title text-light ">Services mécanique</h3>
+                </div>
+                <div class="card-body bg-dark">
+                    {% for meca in mecas %}
+                    <div class="mb-4">
+                        <img src={{ asset('logo/28636.svg')}} height="30px" class="me-3">
+                        <p class="card-text text-light d-inline">{{ meca.service }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center mt-2">
+            <div class="card border border-danger rounded bg-dark" style="width: 45em;">
+                <div class="photo_caro card-img-top rounded d-flex align-items-center justify-content-center" alt="Image de mécanique" >
+                    <h3 class="card-title text-light ">Services carosseries</h3>
+                </div>
+                <div class="card-body bg-dark">
+                    {% for body in bodys %}
+                    <div class="mb-4">
+                        <img src={{ asset('logo/2027078.svg')}} height="30px" class="me-3">
+                        <p class="card-text text-light d-inline">{{ body.service }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-dark mt-4" style="height: 70px;">
+        <div class="col d-flex align-items-center justify-content-center ">
+            <p class="text-light" style="font-size: 20px;">Avis clients<p>
+        </div>
+    </div>
+    <div class="row bg-dark" style="height: 70px;">
+        <div class="col d-flex align-items-center justify-content-center ">
+          <h2 class="text-light">Nos clients sont satisfaits</h2>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center bg-dark">
+        {% for comment in comments %}
+        {% if comment.isPublished == true %}
+        <div class="col-lg-2 m-3">
+            <div class="card bg-primary">
+                <h3 class="d-flex justify-content-center m-3">{{ comment.name }}</h3>
+                <p class="text-center m-3">{{ comment.comment }}</p>
+                <div class="d-flex justify-content-center m-3">
+                    {% for i in 1..comment.mark %}
+                    <img src={{ asset('logo/35788.svg')}} height="30px">
+                    {% endfor %}
+                </div>  
+            </div>
+        </div>
+        {% endif %}  
+        {% endfor %}
+    </div>
+    <div class="row bg-dark m-3" >
+        <div class="col d-flex align-items-center justify-content-center " style="height: 150px;">
+            <a href="{{ path('app_comments_add')}}">
+                <button type="button" class="btn btn-danger rounded">Je donne mon avis</button>
+            </a>
+        </div>
+    </div>
+    <div class="row bg-dark" style="height: 50px;"></div>
+</section>
+{% endblock %}

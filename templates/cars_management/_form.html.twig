@@ -1,0 +1,71 @@
+<div class="row bg-dark d-flex justify-content-center">
+    <div class="col-9 m-5">
+      <div class="card-body py-5 mx-md-5 bg-light rounded">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            {{ form_start(carForm)}}
+                <div class="mb-4 d-flex justify-content-center">
+                    <h1>véhicule</h1>
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-4 text-center">
+                        {{ form_row(carForm.name)}}
+                    </div>
+                    <div class="col-6 mb-4 text-center">
+                        {{ form_row(carForm.fuelType)}}
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-4 text-center">
+                      {{ form_row(carForm.year)}}
+                    </div>  
+                    <div class="col-6 mb-4 text-center">
+                      {{ form_row(carForm.gearbox)}}
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-6 mb-4 text-center">
+                      {{ form_row(carForm.kilometers)}}
+                    </div>  
+                    <div class="col-6 mb-4 text-center">
+                      {{ form_row(carForm.fiscalPower)}}
+                    </div>
+                </div> 
+                <div class="row">  
+                    <div class="col-6 mb-4 text-center">
+                      {{ form_row(carForm.power)}}
+                    </div>  
+                    <div class="col-6 mb-4 text-center">
+                      {{ form_row(carForm.price)}}
+                    </div>
+                </div>  
+                <div class="mb-4 text-center">
+                  {{ form_row(carForm.description)}}
+                </div> 
+                {% if app.request.attributes.get('_route') == 'app_cars_management_edit' %}
+                <div class="text-center d-flex justify-content-center">
+                  <p>Image actuelle</p>
+                </div> 
+                <div class="mb-4 text-center d-flex justify-content-center">
+                    <img src="{{ asset('assets/uploads/' ~ car.picture )}}"  alt"image d'un véhicule" height="300">
+                </div>
+                <div class="mb-4 text-center d-flex justify-content-center">
+                  <p>séléctionnez à nouveau l'image pour la conserver ou séléctionnez en une autre</p>
+                </div>
+                {% endif %}
+                <div class="mb-4 text-center d-flex justify-content-center">
+                  {{ form_row(carForm.picture)}}
+                </div>
+                
+                  
+                
+                <div class="mb-4 text-center">
+                  <button type="submit" class="btn btn-success mt-3">{{ button_label|default('Ajouter') }}</button>  
+                </div>
+              
+            {{ form_end(carForm)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

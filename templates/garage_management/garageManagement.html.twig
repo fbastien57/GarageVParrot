@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GestionG{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../pictures/gestionV.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    h2{
+        text-decoration: underline;
+    }
+    .photo_meca{
+        background-image: url(../pictures/service_meca.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+    }
+
+    .photo_caro{
+        background-image: url(../pictures/service_caro.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+    }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Gestion garage</p>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="col text-center text-light m-3">Gestion services mécaniques</h2>
+    </div>
+    <div class="row border border-danger d-flex align-items-center ">
+        <div class="col-md-6 d-flex justify-content-center">
+            <a href="{{ path('app_garage_addM')}}">
+                <button type="submit" class="btn btn-success mt-3">Ajouter un service</button>  
+            </a>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="card border border-danger rounded bg-dark m-3" style="width: 45em;">
+                <div class="photo_meca card-img-top rounded d-flex align-items-center justify-content-center" alt="Image de mécanique" >
+                    <h3 class="card-title text-light ">Services mécaniques</h3>
+                </div>
+                <div class="card-body bg-dark">
+                    {% for meca in mecas %}
+                    <div class="mb-4">
+                        <img src={{ asset('logo/2027078.svg')}} height="30px" class="me-3">
+                        <p class="card-text text-light d-inline">{{meca.service}}</p>
+                        <a href="{{ path('app_garage_editM' , { id: meca.id } ) }}">
+                            <button type="button" class="btn btn-light rounded ms-4">Modifier</button>
+                        </a>
+                        <a href="{{ path('app_garage_deleteM' , { id: meca.id } ) }}">
+                            <button type="button" class="btn btn-danger rounded ms-4">Supprimer</button>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>>
+    <div class="row">
+        <h2 class="col text-center text-light m-3">Gestion services carosseries</h2>
+    </div>
+    <div class="row border border-danger d-flex align-items-center">
+        <div class="col-md-6 d-flex justify-content-center">
+            <a href="{{ path('app_garage_addB')}}">
+                <button type="submit" class="btn btn-success mt-3">Ajouter un service</button>  
+            </a>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="card border border-danger rounded bg-dark m-3" style="width: 45em;">
+                <div class="photo_caro card-img-top rounded d-flex align-items-center justify-content-center" alt="Image de mécanique" >
+                    <h3 class="card-title text-light ">Services carosseries</h3>
+                </div>
+                <div class="card-body bg-dark">
+                    {% for body in bodys %}
+                    <div class="mb-4">
+                       <img src={{ asset('logo/2027078.svg')}} height="30px" class="me-3">
+                       <p class="card-text text-light d-inline">{{body.service}}</p>
+                       <a href="{{ path('app_garage_editB' , { id: body.id } ) }}">
+                        <button type="button" class="btn btn-light rounded ms-4">Modifier</button>
+                    </a>
+                    <a href="{{ path('app_garage_deleteB' , { id: body.id } ) }}">
+                        <button type="button" class="btn btn-danger rounded ms-4">Supprimer</button>
+                    </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>>
+    <div class="row">
+        <h2 class="col text-center text-light m-3">Gestion horaires d'ouvertures</h2>
+    </div>
+    <div class="row border border-danger d-flex align-items-center">
+        <div class="col-md-6 d-flex justify-content-around">
+            <div>
+                <a href="{{ path('app_garage_addH')}}">
+                    <button type="submit" class="btn btn-success mt-3">Ajouter des horaires</button>  
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-around align-items-center">
+            {% for hour in hours %}
+            <div class="text-light text-center">
+                <p>
+                    Horraires d'ouverture<br>
+                    Lundi: {{hour.mondayHours}}<br>
+                    Mardi: {{hour.tuesdayHours}}<br>
+                    Mercredi: {{hour.wednesdayHours}}<br>
+                    Jeudi: {{hour.thursdayHours}}<br>
+                    Vendredi: {{hour.fridayHours}}<br>
+                    Samedi: {{hour.saturdayHours}}<br>
+                    Dimanche: {{hour.sundayHours}}
+                </p>
+            </div> 
+            <a href="{{ path('app_garage_editH' , { id: hour.id } )}}">
+                <button type="submit" class="btn btn-light m-2">Modifier les horaires</button>  
+            </a>
+            <a href="{{ path('app_garage_deleteH' , { id: hour.id } )}}">
+                <button type="submit" class="btn btn-danger m-2">Supprimer les horaires</button>  
+            </a>
+            {% endfor %}  
+        </div>
+    </div>>
+</section> 
+{% endblock %}

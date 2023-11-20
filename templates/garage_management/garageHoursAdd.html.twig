@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HeursA{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../pictures/gestionV.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    h2{
+        text-decoration: underline;
+    }
+    .photo_meca{
+        background-image: url(../pictures/service_meca.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+    }
+
+    .photo_caro{
+        background-image: url(../pictures/service_caro.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+    }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Gestion garage</p>
+        </div>
+    </div>
+    <div class="row bg-dark" style="height: 50px;">
+        <div class="col d-flex align-items-center justify-content-end me-3">
+          <a href="{{ path('app_garage_management')}}">
+            <button type="button" class="btn btn-danger rounded">Retour</button>
+          </a>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="col text-center text-light m-3">Ajouter des horaires</h2>
+    </div>
+    <div class="row border border-danger ">
+        <div class="col-12 text-center d-flex justify-content-center">
+            <div class="col-7">
+                {{form_start(hoursServicesForm)}}
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.mondayHours)}}
+                </div> 
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.tuesdayHours)}}
+                </div> 
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.wednesdayHours)}}
+                </div> 
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.thursdayHours)}}
+                </div> 
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.fridayHours)}}
+                </div> 
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.saturdayHours)}}
+                </div> 
+                 <div class="text-light">
+                    {{form_row(hoursServicesForm.sundayHours)}}
+                </div>
+                <button type="submit" class="btn btn-danger mt-3">Ajouter</button> 
+                {{form_end(hoursServicesForm)}}
+            </div>
+        </div>
+    </div>>
+</section> 
+{% endblock %}

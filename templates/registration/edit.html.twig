@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ModificationU{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../../pictures/ajoutU.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<section class="container-fluid">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Modifier un utilisateur</p>
+        </div>
+    </div>
+<div class="row bg-dark" style="height: 50px;">
+    <div class="col d-flex align-items-center justify-content-end me-3">
+      <a href="{{ path('app_register_list')}}">
+        <button type="button" class="btn btn-danger rounded">Retour</button>
+      </a>
+    </div>
+</div>
+<div class="row bg-dark d-flex justify-content-center">
+    <div class="col-9 m-5">
+        <div class="card-body py-5 mx-md-5 bg-light rounded">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    {{ form_start(registrationForm) }}
+                    <div class="row">
+                        <div class="col-6 mb-4 text-center">
+                            {{ form_row(registrationForm.firstname) }}
+                        </div>
+                        <div class="col-6 mb-4 text-center">
+                            {{ form_row(registrationForm.lastname) }}
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-4 text-center">
+                            {{ form_row(registrationForm.email) }}
+                        </div>  
+                        <div class="col-6 mb-4 text-center">
+                            {{ form_row(registrationForm.plainPassword) }}
+                        </div>
+                    </div>
+                    </div> 
+                    {% if app.request.attributes.get('_route') == 'app_register_edit' %}
+                    <div class="text-center d-flex justify-content-center">
+                      <p>Image actuelle</p>
+                    </div> 
+                    <div class="mb-4 text-center d-flex justify-content-center">
+                        <img src="{{ asset('assets/uploads/' ~ user.picture )}}"  alt"image d'un véhicule" height="300">
+                    </div>
+                    <div class="mb-4 text-center d-flex justify-content-center">
+                      <p>séléctionnez à nouveau l'image pour la conserver ou séléctionnez en une autre</p>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col mb-4 text-center d-flex justify-content-center">
+                            {{ form_row(registrationForm.picture) }}
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col mb-4 text-center d-flex justify-content-center">
+                            {{ form_row(registrationForm.roles) }}
+                        </div>  
+                    </div>
+                    <div class="mb-4 text-center">
+                        <button type="submit" class="btn btn-success mt-3">Modifier</button>  
+                    </div>
+
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>   
+{% endblock %}

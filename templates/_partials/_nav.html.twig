@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+      <img src={{ asset('pictures/logo_car_title.png')}} width="150px">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="nav navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="{{ path('app_main')}}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{{ path('app_cars_list')}}">Véhicules d'occasions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light " href="{{ path('app_contact_form')}}" >Nous Contacter</a>
+          </li>
+          {% if app.user%}
+          <li class="nav-item">
+            <a class="nav-link text-light " href="{{ path('app_cars_management_list')}}">Gestion véhicules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light " href="{{ path('app_comments_list')}}">Gestion avis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light " href="{{ path('app_contact_list')}}">Gestion contact</a>
+          </li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-link text-light " href="{{ path('app_register_list')}}">Gestion utilisateurs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light " href="{{ path('app_garage_management')}}">Gestion garage</a>
+          </li>
+          {% endif %} 
+          {% endif %}
+        </ul>
+      </div>
+      {% if app.user %}
+        <a class="p-1 text-danger" href="{{ path('app_logout')}}">
+        Deconnexion
+      </a>
+      {% else %}
+      <div class="rounded-circle bg-danger">
+        <a class="p-3 text-danger"  href="{{ path('app_login')}}">
+          <img src={{ asset('logo/user.svg')}} width="20px" height="45px">
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>

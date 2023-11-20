@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MécaniqueM{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../../pictures/gestionV.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    h2{
+        text-decoration: underline;
+    }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Gestion garage</p>
+        </div>
+    </div>
+    <div class="row bg-dark" style="height: 50px;">
+        <div class="col d-flex align-items-center justify-content-end me-3">
+          <a href="{{ path('app_garage_management')}}">
+            <button type="button" class="btn btn-danger rounded">Retour</button>
+          </a>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="col text-center text-light m-3">Modifier un service mécanique</h2>
+    </div>
+    <div class="row border border-danger ">
+        <div class="col-12 text-center d-flex justify-content-center">
+            <div class="col-7">
+                {{form_start(mecaServicesForm)}}
+                 <div class="text-light">
+                    {{form_row(mecaServicesForm.service)}}
+                    <button type="submit" class="btn btn-danger mt-3">Modifier</button>
+                </div> 
+                {{form_end(mecaServicesForm)}}
+            </div>
+        </div>
+    </div>>
+</section> 
+{% endblock %}

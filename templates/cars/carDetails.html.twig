@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Details{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../../pictures/occasionJ.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<section class="container-fluid bg-dark ">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Description véhicule</p>
+        </div>
+    </div>
+    <div class="col d-flex align-items-center justify-content-end m-3">
+        <a href="{{ path('app_cars_list')}}">
+          <button type="button" class="btn btn-danger rounded mb-3">Retour</button>
+        </a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="card mb-3 col-10 border border-danger bg-dark" >
+            <div class="row g-0 ">
+              <div class="col-md-6">
+                <img src={{ asset('assets/uploads/' ~ cars.picture) }} class="img-fluid rounded-start">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-light">
+                        {{ cars.name }}
+                      </h5>
+                      <div class="row mt-3">
+                        <div class="col-6 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 70%;" >
+                                <p class="m-2" >année : {{ cars.year }}</p>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center " style="width: 70%;" >
+                                <p class="m-2 " >{{ cars.fuelType }}</p>
+                            </div>
+                        </div>  
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-6 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 70%;" >
+                                <p class="m-2" >{{ cars.kilometers }} km</p>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 70%;" >
+                                <p class="m-2" >{{ cars.gearbox }}</p>
+                            </div>
+                        </div>  
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-6 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 70%;" >
+                                <p class="m-2" >{{ cars.fiscalPower }} cv fiscaux</p>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 70%;" >
+                                <p class="m-2" >{{ cars.power }} cv</p>
+                            </div>
+                        </div>  
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 70%;" >
+                                <p class="m-2" >{{ cars.description }}</p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center" style="width: 40%;">
+                                <p class="m-2 " >{{ cars.price }} €</p>
+                            </div>
+                        </div>
+                      </div>>
+                      <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-center mt-3">
+                            <div class="rounded text-center" >
+                                <a href="{{ path('app_contact_form')}}">
+                                    <button type="button" class="btn btn-danger rounded mb-3">Intéressé par ce véhicule ?</button>
+                                  </a>
+                            </div>
+                        </div>
+                      </div>>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

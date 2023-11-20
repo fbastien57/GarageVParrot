@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<style>
+  .photo{
+      background-image: url(../pictures/connexion.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+
+</style>
+<section class="container-fluid p-0 ">
+  <div class="photo row" style="height: 200px;">
+    <div class="col d-flex justify-content-center align-items-center">
+        <p class="text-light text-center" style="font-size: 26px;">Connexion <br> Espace réservé au personel</p>
+    </div>
+</div>
+    <div class="row bg-dark" style="height: 50px;">
+        <div class="col d-flex align-items-center justify-content-end me-3">
+          <a href="{{ path('app_main')}}">
+            <button type="button" class="btn btn-danger rounded">Retour</button>
+          </a>
+        </div>
+    </div>
+    <div class="row bg-dark d-flex justify-content-center">
+      <div class="col-8 m-5">
+        <div class="card-body py-5 mx-md-5 bg-light rounded">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+              <form method="post">
+                {% if error %}
+                  <div class="alert alert-danger text-center">Email ou mot de passe invalide</div>
+                {% endif %}
+
+                {% if app.user %}
+                  <div class="alert alert-primary text-center">
+                      Vous etes connecté comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
+                  </div>
+                {% endif %}
+                <!-- h1 -->
+                <div class="row ">
+                  <div class="col mb-4 d-flex justify-content-center">
+                    <h1>Se connecter</h1>
+                  </div>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-group mb-4 text-center">
+                  <label class="form-label" for="inputEmail">E-mail</label>
+                  <input type="email" id="inputEmail" name="email" class="form-control" value="{{ last_username }}" autocomplete="email" required autofocus>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-group text-center mb-4">
+                  <label class="form-label" for="inputPassword">Mot de passe</label>
+                  <input type="password" id="inputPassword" class="form-control" name="password" autocomplete="current-password" required>
+                  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </div>
+
+                <!-- Login button -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                  <button type="submit" class="btn btn-danger btn-block mb-4">
+                    Connexion
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}

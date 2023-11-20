@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GestionC{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../pictures/contact.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Gestion des contacts</p>
+        </div>
+    </div>
+    {% include "_partials/_flash.html.twig" %}
+    {% for contact in contacts %}
+    <div class="row d-flex justify-content-center bg-dark mt-3">   
+        <div class=" col-8 card mb-3 ">
+            <div class="row ">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row mt-3">
+                          <div class="col-md-6 d-flex justify-content-center mt-3">
+                              <div class="bg-light rounded text-center" style="width: 70%;" >
+                                  <p class="m-2" >{{ contact.firstname }}</p>
+                              </div>
+                          </div>
+                          <div class="col-md-6 d-flex justify-content-center mt-3">
+                              <div class="bg-light rounded text-center" style="width: 70%;" >
+                                  <p class="m-2" >{{ contact.lastname }}</p>
+                              </div>
+                          </div>  
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-6 d-flex justify-content-center mt-3">
+                              <div class="bg-light rounded text-center" style="width: 70%;" >
+                                  <p class="m-2" >{{ contact.email }}</p>
+                              </div>
+                          </div>
+                          <div class="col-md-6 d-flex justify-content-center mt-3">
+                              <div class="bg-light rounded text-center" style="width: 70%;" >
+                                  <p class="m-2" >{{ contact.phoneNumber }}</p>
+                              </div>
+                          </div>  
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col d-flex justify-content-center mt-3">
+                                <div class="bg-light rounded" style="width: 70%;" >
+                                    <p class="m-2 d-flex justify-content-center " >{{ contact.message }}</p>
+                                </div>
+                            </div> 
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col d-flex justify-content-center mt-3">
+                            <div class="bg-light rounded text-center " >
+                                <a href="{{ path('app_contact_delete' ,  {id: contact.id } ) }}">
+                                    <button type="button" class="btn btn-danger rounded">supprimer</button>
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+</section>   
+{% endblock %}
+

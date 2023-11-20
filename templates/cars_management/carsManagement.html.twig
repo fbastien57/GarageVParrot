@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GestionV{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../pictures/gestionV.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Gestion véhicules</p>
+        </div>
+    </div>
+    {% include "_partials/_flash.html.twig" %}
+    </div>
+    <div class="row bg-dark m-3" style="height: 70px;">
+        <div class="col d-flex align-items-center justify-content-center ">
+            <a href="{{ path('app_cars_management_add')}}">
+                <button type="button" class="btn btn-success rounded">Ajouter un véhicule</button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        {% for car in cars %}
+        <div class="col-md-4 d-flex justify-content-center mt-4">
+            <div class="card bg-dark border border-danger" style="width: 25rem;">
+                <img class="card-img-top" src={{ asset('assets/uploads/' ~ car.picture) }} alt="Card image cap" height="280px">
+                <div class="card-body">
+                  <h5 class="card-title text-center text-light">
+                    {{ car.name }}
+                  </h5>
+                  <div class="row mt-3">
+                    <div class="col-6 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center" style="width: 70%;" >
+                            <p class="m-2" >{{ car.year }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center" style="width: 70%;" >
+                            <p class="m-2" >{{ car.fuelType }}</p>
+                        </div>
+                    </div>  
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-6 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center" style="width: 70%;" >
+                            <p class="m-2" >{{ car.kilometers }}km</p>
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center" style="width: 70%;" >
+                            <p class="m-2" >{{ car.gearbox }}</p>
+                        </div>
+                    </div>  
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center" style="width: 70%;" >
+                            <p class="m-2" >{{ car.description }}</p>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center" style="width: 40%;">
+                            <p class="m-2 " >{{ car.price }} €</p>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center " >
+                            <a href="{{ path('app_cars_details' , { id: car.id } ) }}">
+                                <button type="button" class="btn btn-primary rounded">Details</button>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center"  >
+                            <a href="{{ path('app_cars_management_edit' , {id: car.id} ) }}">
+                                <button type="button" class="btn btn-light rounded">Modifier</button>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-center mt-3">
+                        <div class="bg-light rounded text-center"  >
+                            <a href="{{ path('app_cars_management_delete' ,  {id: car.id } ) }}">
+                                <button type="button" class="btn btn-danger rounded">Supprimer</button>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AjoutV{% endblock %}
+
+{% block body %}
+<style>
+  .photo{
+      background-image: url(../../pictures/gestionV.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Ajouter un véhicule</p>
+        </div>
+    </div>
+    <div class="row bg-dark" style="height: 50px;">
+        <div class="col d-flex align-items-center justify-content-end me-3">
+          <a href="{{ path('app_cars_management_list')}}">
+            <button type="button" class="btn btn-danger rounded">Retour</button>
+          </a>
+        </div>
+    </div>
+    {% include "cars_management/_form.html.twig" %}
+</section>
+{% endblock %}

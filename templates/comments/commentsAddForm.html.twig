@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Avis{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../pictures/avis.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Ajouter un avis</p>
+        </div>
+    </div>
+    <div class="col d-flex align-items-center justify-content-end m-3">
+        <a href="{{ path('app_main')}}">
+          <button type="button" class="btn btn-danger rounded mb-3">Retour</button>
+        </a>
+    </div>
+    <div class="row bg-dark d-flex justify-content-center">
+        <div class="col-9 m-5">
+            <div class="card-body py-5 mx-md-5 bg-light rounded">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                    {{ form_start(commentForm)}}
+                        <div class="mb-4 d-flex justify-content-center">
+                            <h1>Avis client</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-4 text-center d-flex justify-content-center">
+                                {{ form_row(commentForm.name)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-4 text-center">
+                                {{ form_row(commentForm.comment)}}
+                            </div>  
+                        </div>
+                        <div class="mb-4 text-center d-flex justify-content-center">
+                            {{ form_row(commentForm.mark)}}
+                        </div>
+                        <div class="mb-4 text-center">
+                            <button type="submit" class="btn btn-success mt-3">envoyer</button>  
+                        </div>
+
+                    {{ form_end(commentForm)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

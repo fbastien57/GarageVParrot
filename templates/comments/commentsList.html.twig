@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GestionCM{% endblock %}
+
+{% block body %}
+<style>
+    .photo{
+        background-image: url(../pictures/avis.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<section class="container-fluid bg-dark">
+    <div class="photo row" style="height: 200px;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="text-light" style="font-size: 26px;">Gestion des avis</p>
+        </div>
+    </div>
+    {% include "_partials/_flash.html.twig" %}
+    <div class="row bg-dark" style="height: 70px;">
+        <div class="col d-flex align-items-center justify-content-center ">
+            <a href="{{ path('app_comments_add')}}">
+                <button type="button" class="btn btn-success rounded">Ajouter un commentaire</button>
+            </a>
+        </div>
+    </div>
+    <div class="row bg-dark" style="height: 150px;">
+        <div class="col d-flex align-items-center justify-content-center text-center">
+            <p class="text-light" style="font-size: 26px;" >Avis en attente</p>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center bg-dark">
+        {% for comment in comments %}
+        {% if comment.isPublished == false %}
+        <div class="col-lg-2">
+            <div class="card bg-primary">
+                <h3 class="d-flex justify-content-center m-3">{{ comment.name }}</h3>
+                <p class="text-center m-3">{{ comment.comment }}</p>
+                <div class="d-flex justify-content-center m-3">
+                    {% for i in 1..comment.mark %}
+                    <img src={{ asset('logo/35788.svg')}} height="30px">
+                    {% endfor %}
+                </div>  
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <a href="{{ path('app_comments_published' , { id: comment.id } ) }}">
+                    <button type="button" class="btn btn-success rounded">publier</button>
+                </a>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <a href="{{ path('app_comments_edit' , { id: comment.id } ) }}">
+                    <button type="button" class="btn btn-light rounded">Modifier</button>
+                </a>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <a href="{{ path('app_comments_delete' , { id: comment.id } ) }}">
+                    <button type="button" class="btn btn-danger rounded">supprimer</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="row d-flex justify-content-center bg-dark border border-danger"></div>
+            <div class="row bg-dark" style="height: 150px;">
+                <div class="col d-flex align-items-center justify-content-center text-center">
+                    <p class="text-light" style="font-size: 26px;" >Avis publiés</p>
+                </div>
+            </div>
+            {% for comment in comments %}
+             {% if comment.isPublished == true %}
+                <div class="col-lg-2 ">
+                    <div class="card bg-primary">
+                        <h3 class="d-flex justify-content-center m-3">{{ comment.name }}</h3>
+                        <p class="text-center m-3">{{ comment.comment }}</p>
+                        <div class="d-flex justify-content-center m-3">
+                            {% for i in 1..comment.mark %}
+                            <img src={{ asset('logo/35788.svg')}} height="30px">
+                            {% endfor %}
+                        </div>  
+                    </div>
+                    <div class="d-flex justify-content-center m-3">
+                        <a href="{{ path('app_comments_notPublished' , { id: comment.id } ) }}">
+                            <button type="button" class="btn btn-success rounded">Retirer</button>
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-center m-3">
+                        <a href="{{ path('app_comments_edit' , { id: comment.id } ) }}">
+                            <button type="button" class="btn btn-light rounded">Modifier</button>
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-center m-3">
+                        <a href="{{ path('app_comments_delete' , { id: comment.id } ) }}">
+                            <button type="button" class="btn btn-danger rounded">supprimer</button>
+                        </a>
+                    </div>
+                    
+                </div>
+            {% endif %} 
+            {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
