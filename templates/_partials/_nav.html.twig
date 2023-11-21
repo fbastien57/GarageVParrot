@@ -1,52 +1,69 @@
-<nav class="navbar navbar-expand-lg bg-dark">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<style>
+  @media (max-width: 991px){
+    .sidebar{
+      background-color: rgba(255 , 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+    }
+  }
+</style>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
   <div class="container-fluid">
-      <img src={{ asset('pictures/logo_car_title.png')}} width="150px">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="nav navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+    <img src={{ asset('pictures/logo_car_title.png')}} width="150px" class="navbar-brand fs-4">
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header text-white border-bottom">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class=" navbar navbar-nav justify-content-center align-items-center fs-6 flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="{{ path('app_main')}}">Accueil</a>
+            <a class="nav-link text-light mx-2 " aria-current="page" href="{{ path('app_main')}}">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="{{ path('app_cars_list')}}">Véhicules d'occasions</a>
+            <a class="nav-link text-light mx-2" href="{{ path('app_cars_list')}}">Véhicules d'occasions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light " href="{{ path('app_contact_form')}}" >Nous Contacter</a>
+            <a class="nav-link text-light mx-2" href="{{ path('app_contact_form')}}" >Nous Contacter</a>
           </li>
           {% if app.user%}
           <li class="nav-item">
-            <a class="nav-link text-light " href="{{ path('app_cars_management_list')}}">Gestion véhicules</a>
+            <a class="nav-link text-light mx-2" href="{{ path('app_cars_management_list')}}">Gestion véhicules</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light " href="{{ path('app_comments_list')}}">Gestion avis</a>
+            <a class="nav-link text-light mx-2" href="{{ path('app_comments_list')}}">Gestion avis</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light " href="{{ path('app_contact_list')}}">Gestion contact</a>
+            <a class="nav-link text-light mx-2" href="{{ path('app_contact_list')}}">Gestion contact</a>
           </li>
           {% if is_granted('ROLE_ADMIN') %}
           <li class="nav-item">
-            <a class="nav-link text-light " href="{{ path('app_register_list')}}">Gestion utilisateurs</a>
+            <a class="nav-link text-light mx-2" href="{{ path('app_register_list')}}">Gestion utilisateurs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light " href="{{ path('app_garage_management')}}">Gestion garage</a>
+            <a class="nav-link text-light mx-2 " href="{{ path('app_garage_management')}}">Gestion garage</a>
           </li>
           {% endif %} 
           {% endif %}
         </ul>
+        <div class="d-flex justify-content-center align-items-center me-4" >
+          {% if app.user %}
+          <a class="p-1 text-danger" href="{{ path('app_logout')}}">
+            Deconnexion
+          </a>
+        {% else %}     
+          <a class="p-3 text-danger"  href="{{ path('app_login')}}">
+            <img src={{ asset('logo/user.svg')}} width="20px" height="45px">
+          </a>
+        {% endif %}
+        </div>
       </div>
-      {% if app.user %}
-        <a class="p-1 text-danger" href="{{ path('app_logout')}}">
-        Deconnexion
-      </a>
-      {% else %}
-      <div class="rounded-circle bg-danger">
-        <a class="p-3 text-danger"  href="{{ path('app_login')}}">
-          <img src={{ asset('logo/user.svg')}} width="20px" height="45px">
-        </a>
-      </div>
-      {% endif %}
     </div>
   </div>
 </nav>
