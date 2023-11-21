@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchForm extends AbstractType
+class SearchFormType  extends AbstractType
 {
 
 
@@ -66,9 +66,9 @@ class SearchForm extends AbstractType
             'csrf_protection' => false,
         ]);
     }
-
     public function getBlockPrefix()
     {
         return '';
     }
 }
+

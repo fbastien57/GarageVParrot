@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Data\SearchData;
 use App\Entity\Cars;
-use App\Form\SearchForm;
+use App\Form\SearchFormType;
 use App\Repository\CarsRepository;
 use App\Repository\GarageHoursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class CarsController extends AbstractController
     public function CarsList(CarsRepository $carsRepository , GarageHoursRepository $garageHoursRepository , Request $request): Response
     {
         $data = new SearchData();
-        $form = $this->createForm(SearchForm::class, $data);
+        $form = $this->createForm(SearchFormType::class, $data);
         $form->handleRequest($request);
         //dd($data);
         $cars = $carsRepository->findSearch($data);
