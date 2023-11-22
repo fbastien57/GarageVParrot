@@ -1,5 +1,6 @@
 GarageVPerroquet
 ECF DevWeb GarageVParrot Référence : EVALENTRECFccp1TPDWWMGDA_330669_20230611230814 le site web se trouve sur la branche master
+pour se connecter en admin sur le site web thhps://garagevparrot57.fr      email:admin22@admin.com  mdp: V123456
 
 La charte graphique et la documentation technique sont dans le dossier ECF_DOC (branche principale)
 
