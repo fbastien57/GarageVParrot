@@ -12,15 +12,15 @@ copier les documents de mon projet sur votre projet
 
 Installer toutes les dépendances nécessaires
 
-démarer votre serveur local (mamp ou xampp) appach + mysql
+démarrer votre serveur local (mamp ou xampp) appach + mysql
 
 modifier le fichier env.local en entrant les informations de votre base de données
 
-une fois connecté à la base de données , faire une création de base de données php bin/console doctrine:database:create, faire une doctrine:database diff puis une doctrine:migraion:migrate vos tables ont été créées en fonction de vous entité.
+une fois connecté à la base de données , faire une création de base de données php bin/console doctrine:database:create, faire une doctrine:database diff puis une doctrine:migration:migrate , vos tables ont été créées en fonction de vos entité.
 
 Ajouter un profil admin pour naviguer sur le site comme administrateur avec la commande : php bin/console doctrine:fixtures:load
 
-Lancer le serveur symfony avec la commande : $ symfony server:start _d cliquer sur l'adresse qui s'affiche dans le terminal pour au site
+Lancer le serveur symfony avec la commande : $ symfony server:start-d cliquer sur l'adresse qui s'affiche dans le terminal pour accéder au site
 
 La base de données étant vide , le site le sera aussi ,
 
